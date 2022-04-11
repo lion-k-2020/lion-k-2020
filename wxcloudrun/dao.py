@@ -71,7 +71,7 @@ def query_articlebyid(id):
     :return: article实体
     """
     try:
-        return articles.query.filter(articles.id == id).first()
+        return article.query.filter(article.id == id).first()
     except OperationalError as e:
         logger.info("query_articlebyid errorMsg= {} ".format(e))
         return None
@@ -83,7 +83,7 @@ def delete_articlebyid(id):
     :param id: article的ID
     """
     try:
-        article = articles.query.get(id)
+        article = article.query.get(id)
         if article is None:
             return
         db.session.delete(article)
@@ -95,7 +95,7 @@ def delete_articlebyid(id):
 def insert_article(article):
     """
     插入一个article实体
-    :param article: articles实体
+    :param article: article实体
     """
     try:
         db.session.add(article)
