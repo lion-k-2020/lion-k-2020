@@ -16,9 +16,9 @@ class Counters(db.Model):
     
 class Article(db.Model):
     __tablename__ = 'article'
-    id = db.Column(String(50), primary_key=True, autoincrement=True)
-    title = db.Column(String(50), nullable=False, name='article_title')
-    describe = db.Column(String(200), unique=True, nullable=False)
-    read_count = db.Column(Integer, default=0)
-    update_time = db.Column(DateTime,onupdate=datetime.now(),default=datetime.now())
-    create_time = db.Column(DateTime,default=datetime.now())
+    id = db.Column(db.String(50), primary_key=True, autoincrement=True)
+    title = db.Column(db.String(50), nullable=False, name='article_title')
+    describe = db.Column(db.String(200), unique=True, nullable=False)
+    read_count = db.Column(db.Integer, default=0)
+    update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
+    create_time = db.Column(db.TIMESTAMP, default=datetime.now())
