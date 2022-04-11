@@ -100,10 +100,11 @@ def article():
         article.created_at = datetime.now()
         article.updated_at = datetime.now()
         insert_article(article)
-        return make_succ_response(counter.count)
+        return make_succ_empty_response()
 
     # 执行编辑操作
     elif action == 'edit':
+        article = Article()
         article.id = params['id']
         article.title = params['title']
         article.describe = params['describe']
