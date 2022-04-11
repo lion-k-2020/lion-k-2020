@@ -22,3 +22,6 @@ class Article(db.Model):
     read_count = db.Column(db.Integer, default=0)
     update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
+
+
+db.create_all()
