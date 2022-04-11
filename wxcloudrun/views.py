@@ -110,7 +110,7 @@ def article():
         article.describe = params['describe']
         article.read_count = params['read_count']
         article.updated_at = datetime.now()
-        update_articlebyid(counter)
+        update_articlebyid(article)
         return make_succ_empty_response()
         
     # 执行删除操作
