@@ -16,7 +16,7 @@ class Counters(db.Model):
     
 class Article(db.Model):
     __tablename__ = 'article'
-    id = db.Column(Integer, primary_key=True, autoincrement=True)
+    id = db.Column(String(50), primary_key=True, autoincrement=True)
     title = db.Column(String(50), nullable=False, name='article_title')
     describe = db.Column(String(200), unique=True, nullable=False)
     read_count = db.Column(Integer, default=0)
