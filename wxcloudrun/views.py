@@ -93,7 +93,7 @@ def article():
     # 执行自增操作
     if action == 'add':
         article = Article()
-        article.id = uuid()
+        article.id = suid()
         article.title = params['title']
         article.describe = params['describe']
         article.read_count = params['read_count']
