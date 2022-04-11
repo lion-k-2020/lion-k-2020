@@ -1,9 +1,10 @@
 from datetime import datetime
 from flask import render_template, request
 from run import app
-from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
+from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid, delete_articlebyid, query_articlebyid, insert_article, update_articlebyid
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
+from wxcloudrun.sys import uuid
 
 
 @app.route('/')
@@ -53,7 +54,7 @@ def count():
 
     # 执行清0操作
     elif action == 'clear':
-        delete_counterbyid(1)
+        delete_counterbyid(openid)
         return make_succ_empty_response()
 
     # action参数错误
@@ -68,3 +69,54 @@ def get_count():
     """
     counter = Counters.query.filter(Counters.id == 1).first()
     return make_succ_response(0) if counter is None else make_succ_response(counter.count)
+    
+@app.route('/api/article', methods=['POST'])
+def article():
+    """
+    :return:结果
+    """
+
+    # 获取请求体参数
+    params = request.get_json()
+
+    # 检查action参数
+    if 'action' not in params:
+        return make_err_response('缺少action参数')
+    if 'openid' not in params:
+        return make_err_response('缺少openid参数')
+
+    # 按照不同的action的值，进行不同的操作
+    action = params['action']
+    # 获取微信用户openid
+    openid = params['openid']
+
+    # 执行自增操作
+    if action == 'add':
+        article = Article()
+        article.id = uuid()
+        article.title = params['title']
+        article.describe = params['describe']
+        article.read_count = params['read_count']
+        article.created_at = datetime.now()
+        article.updated_at = datetime.now()
+        insert_article(article)
+        return make_succ_response(counter.count)
+
+    # 执行编辑操作
+    elif action == 'edit':
+        article.id = params['id']
+        article.title = params['title']
+        article.describe = params['describe']
+        article.read_count = params['read_count']
+        article.updated_at = datetime.now()
+        update_articlebyid(counter)
+        return make_succ_empty_response()
+        
+    # 执行删除操作
+    elif action == 'delete':
+        delete_articlebyid(params['id'])
+        return make_succ_empty_response()
+
+    # action参数错误
+    else:
+        return make_err_response('action参数错误')
