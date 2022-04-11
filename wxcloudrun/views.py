@@ -26,22 +26,26 @@ def count():
     # 检查action参数
     if 'action' not in params:
         return make_err_response('缺少action参数')
+    if 'openid' not in params:
+        return make_err_response('缺少openid参数')
 
     # 按照不同的action的值，进行不同的操作
     action = params['action']
+    # 获取微信用户openid
+    openid = params['openid']
 
     # 执行自增操作
     if action == 'inc':
-        counter = query_counterbyid(1)
+        counter = query_counterbyid(openid)
         if counter is None:
             counter = Counters()
-            counter.id = 1
+            counter.id = openid
             counter.count = 1
             counter.created_at = datetime.now()
             counter.updated_at = datetime.now()
             insert_counter(counter)
         else:
-            counter.id = 1
+            counter.id = openid
             counter.count += 1
             counter.updated_at = datetime.now()
             update_counterbyid(counter)
