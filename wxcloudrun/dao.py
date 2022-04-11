@@ -62,3 +62,58 @@ def update_counterbyid(counter):
         db.session.commit()
     except OperationalError as e:
         logger.info("update_counterbyid errorMsg= {} ".format(e))
+
+
+def query_articlebyid(id):
+    """
+    根据ID查询article实体
+    :param id: article的ID
+    :return: article实体
+    """
+    try:
+        return articles.query.filter(articles.id == id).first()
+    except OperationalError as e:
+        logger.info("query_articlebyid errorMsg= {} ".format(e))
+        return None
+
+
+def delete_articlebyid(id):
+    """
+    根据ID删除article实体
+    :param id: article的ID
+    """
+    try:
+        article = articles.query.get(id)
+        if article is None:
+            return
+        db.session.delete(article)
+        db.session.commit()
+    except OperationalError as e:
+        logger.info("delete_articlebyid errorMsg= {} ".format(e))
+
+
+def insert_article(article):
+    """
+    插入一个article实体
+    :param article: articles实体
+    """
+    try:
+        db.session.add(article)
+        db.session.commit()
+    except OperationalError as e:
+        logger.info("insert_article errorMsg= {} ".format(e))
+
+
+def update_articlebyid(article):
+    """
+    根据ID更新article的值
+    :param article实体
+    """
+    try:
+        article = query_articlebyid(article.id)
+        if article is None:
+            return
+        db.session.flush()
+        db.session.commit()
+    except OperationalError as e:
+        logger.info("update_articlebyid errorMsg= {} ".format(e))
