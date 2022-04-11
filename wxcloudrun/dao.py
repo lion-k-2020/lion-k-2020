@@ -3,7 +3,7 @@ import logging
 from sqlalchemy.exc import OperationalError
 
 from wxcloudrun import db
-from wxcloudrun.model import Counters
+from wxcloudrun.model import Counters, Article
 
 # 初始化日志
 logger = logging.getLogger('log')
@@ -71,7 +71,7 @@ def query_articlebyid(id):
     :return: article实体
     """
     try:
-        return article.query.filter(article.id == id).first()
+        return Article.query.filter(Article.id == id).first()
     except OperationalError as e:
         logger.info("query_articlebyid errorMsg= {} ".format(e))
         return None
@@ -83,7 +83,7 @@ def delete_articlebyid(id):
     :param id: article的ID
     """
     try:
-        article = article.query.get(id)
+        article = Article.query.get(id)
         if article is None:
             return
         db.session.delete(article)
