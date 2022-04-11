@@ -104,7 +104,7 @@ def article():
 
     # 执行编辑操作
     elif action == 'edit':
-        article = Article()
+        article = query_articlebyid(params['id'])
         article.id = params['id']
         article.title = params['title']
         article.describe = params['describe']
