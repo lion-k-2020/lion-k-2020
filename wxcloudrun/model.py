@@ -30,7 +30,7 @@ class Tab(db.Model):
     index = db.Column(db.Integer, unique=True, autoincrement=True)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
-    deleted = db.Column(db.Integer(2), default=0)
+    deleted = db.Column(db.SmallInteger, default=0)
 
 class Video(db.Model):
     __tablename__ = 'video'
@@ -42,26 +42,26 @@ class Video(db.Model):
     index = db.Column(db.Integer, unique=True, autoincrement=True)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
-    deleted = db.Column(db.Integer(2), default=0)
+    deleted = db.Column(db.SmallInteger, default=0)
 
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.String(50), primary_key=True, autoincrement=False)
     user_id = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(50), nullable=False, name='用户名称')
-    is_vip = db.Column(db.Integer(2), default=0)
+    is_vip = db.Column(db.SmallInteger, default=0)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
-    deleted = db.Column(db.Integer(2), default=0)
+    deleted = db.Column(db.SmallInteger, default=0)
 
 class Favorite(db.Model):
     __tablename__ = 'favorite'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     user_id = db.Column(db.String(32), nullable=False)
     video_id = db.Column(db.String(32), nullable=False)
-    is_favorite = db.Column(db.Integer(2), default=0)
+    is_favorite = db.Column(db.SmallInteger, default=0)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
-    deleted = db.Column(db.Integer(2), default=0)
+    deleted = db.Column(db.SmallInteger, default=0)
 	
 db.create_all()
