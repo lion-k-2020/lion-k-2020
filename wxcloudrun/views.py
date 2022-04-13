@@ -15,6 +15,15 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/api/get_data', methods=['POST'])
+def get_data():
+    """
+    :return: 小程序的tabs和videos
+    """
+    tabs = Tab.query.filter(Tab.deleted == 0).all()
+    videos = Video.query.filter(Video.deleted == 0).all()
+    return make_succ_response({"tabs" : tabs, "videos":videos})
+
 @app.route('/api/count', methods=['POST'])
 def count():
     """
