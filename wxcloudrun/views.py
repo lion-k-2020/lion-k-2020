@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template, request
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid, delete_articlebyid, query_articlebyid, insert_article, update_articlebyid
-from wxcloudrun.model import Counters, Article
+from wxcloudrun.model import Counters, Article, Tab, Video
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 from wxcloudrun.sys import suid
 
