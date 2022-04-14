@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import render_template, request
 from run import app
-from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid, delete_articlebyid, query_articlebyid, insert_article, update_articlebyid
+from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid, delete_articlebyid, query_articlebyid, insert_article, update_articlebyid, get_tabs, get_videos
 from wxcloudrun.model import Counters, Article, Tab, Video
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 from wxcloudrun.sys import suid
@@ -20,8 +20,8 @@ def get_data():
     """
     :return: 小程序的tabs和videos
     """
-    tabs = Tab.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
-    videos = Video.query(Video.tab_id, Video.name, Video.cover_src, Video.src, Video.index).filter(Video.deleted == 0).all()
+    tabs = get_tabs()
+    videos = get_videos()
     return make_succ_response({"tabs" : tabs, "videos":videos})
 
 @app.route('/api/count', methods=['POST'])
