@@ -1,5 +1,6 @@
 import json
- 
+from sqlalchemy.ext.declarative import DeclarativeMeta
+
 class AlchemyEncoder(json.JSONEncoder):
     """
     SqlAlchemy对象转换为json格式
