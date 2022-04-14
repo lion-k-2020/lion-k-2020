@@ -10,7 +10,7 @@ def make_succ_empty_response():
 
 
 def make_succ_response(data):
-    data = json.dumps({'code': 0, 'data': data}, cls=AlchemyEncoder, indent=4)
+    data = json.dumps({'code': 0, 'data': data}, ensure_ascii=False)
     return Response(data, mimetype='application/json')
 
 
