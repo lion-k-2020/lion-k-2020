@@ -17,7 +17,7 @@ class Counters(db.Model):
 class Article(db.Model):
     __tablename__ = 'article'
     id = db.Column(db.String(50), primary_key=True, autoincrement=False)
-    title = db.Column(db.String(50), nullable=False, name='article_title')
+    title = db.Column(db.String(50), nullable=False)
     describe = db.Column(db.String(200), unique=False, nullable=False)
     read_count = db.Column(db.Integer, default=0)
     update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
@@ -26,7 +26,7 @@ class Article(db.Model):
 class Tab(db.Model):
     __tablename__ = 'tab'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
-    name = db.Column(db.String(50), nullable=False, name='标签名称')
+    name = db.Column(db.String(50), nullable=False)
     index = db.Column(db.Integer, unique=True, autoincrement=True)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
@@ -36,7 +36,7 @@ class Video(db.Model):
     __tablename__ = 'video'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     tab_id = db.Column(db.String(32), nullable=False)
-    name = db.Column(db.String(50), nullable=False, name='视频名称')
+    name = db.Column(db.String(50), nullable=False)
     cover_src = db.Column(db.String(100), nullable=False)
     src = db.Column(db.String(100), nullable=False)
     index = db.Column(db.Integer, unique=True, autoincrement=True)
@@ -48,7 +48,7 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.String(50), primary_key=True, autoincrement=False)
     user_id = db.Column(db.String(50), nullable=False)
-    name = db.Column(db.String(50), nullable=False, name='用户名称')
+    name = db.Column(db.String(50), nullable=False)
     is_vip = db.Column(db.SmallInteger, default=0)
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
