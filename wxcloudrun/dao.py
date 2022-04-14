@@ -1,7 +1,7 @@
 import logging
 
 from sqlalchemy.exc import OperationalError
-
+from builtins import str
 from wxcloudrun import db
 from wxcloudrun.model import Counters, Article, Tab, Video
 
