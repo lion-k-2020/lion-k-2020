@@ -8,22 +8,19 @@ class AlchemyEncoder(json.JSONEncoder):
     """
  
     def default(self, obj):
-		if isinstance(obj, Query):
-			fileds = []
-			record = {}
-			for rec in obj.all():
-				for field in [x for in dir(rec) if
-					not x.startswith('_')
-					and hasattr(rec._getattribute_(x), '_call_') == False
-					and x != 'metadata'];
-				data = rec._getattribute_(field)
-				try:
-					record[field] = data
-				except TypeError:
-					record[field] = None
-			fields.append(record)
-			return fields
-		return json.JSONEncoder.default(self, obj)
+	if isinstance(obj, Query):
+	    fileds = []
+	    record = {}
+	    for rec in obj.all():
+		for field in [x for in dir(rec) if not x.startswith('_') and hasattr(rec._getattribute_(x), '_call_') == False and x != 'metadata'];
+		    data = rec._getattribute_(field)
+		try:
+		    record[field] = data
+		except TypeError:
+		    record[field] = None
+	    fields.append(record)
+	    return fields
+	return json.JSONEncoder.default(self, obj)
 	
 	
 	
