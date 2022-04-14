@@ -22,7 +22,9 @@ def get_data():
     """
     tabs = get_tabs()
     videos = get_videos()
-    return make_succ_response({"tabs" : tabs, "videos":videos})
+    tabs = []
+    videos = [{"id":"daf", "index":5},{"id":"daafdf", "index":51}]
+    return make_succ_response({"tabs" : tabs, "videos" : videos})
 
 @app.route('/api/count', methods=['POST'])
 def count():
