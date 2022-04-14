@@ -1,7 +1,7 @@
 import json
 
 from flask import Response
-from wxcloudrun.myEncoder import AlchemyEncoder
+from wxcloudrun.myEncoder import AlchemyEncoder, new_alchemy_encoder
 
 
 def make_succ_empty_response():
