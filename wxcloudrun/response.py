@@ -1,7 +1,7 @@
 import json
 
 from flask import Response
-from wxcloudrun.myEncoder import MyEncoder
+from wxcloudrun.sys import MyEncoder
 
 
 def make_succ_empty_response():
