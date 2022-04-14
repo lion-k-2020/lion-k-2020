@@ -16,9 +16,12 @@ def get_tabs():
     """
     try:
         tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
-        print(tabs)
-        #logger.info("get_tabs errorMsg= {} ".tabs)
-        return tabs
+        tabs_list = []
+        for i in range(len(tabs)):
+            tabs_list.append(str(tabs[i]))
+        str = ''.join(tabs_list)
+        logger.info("get_tabs errorMsg= {} ".str)
+        return tabs_list
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
         return None
@@ -30,6 +33,7 @@ def get_videos():
     :return: Videos
     """
     try:
+        return {}
         return db.session.query(Video.tab_id, Video.name, Video.cover_src, Video.src, Video.index).filter(Video.deleted == 0).all()
     except OperationalError as e:
         logger.info("get_videos errorMsg= {} ".format(e))
