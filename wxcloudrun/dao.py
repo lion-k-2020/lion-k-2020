@@ -3,10 +3,34 @@ import logging
 from sqlalchemy.exc import OperationalError
 
 from wxcloudrun import db
-from wxcloudrun.model import Counters, Article
+from wxcloudrun.model import Counters, Article, Tab, Video
 
 # 初始化日志
 logger = logging.getLogger('log')
+
+
+def get_tabs():
+    """
+    查询已定义Tabs
+    :return: Tabs
+    """
+    try:
+        return db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
+    except OperationalError as e:
+        logger.info("get_tabs errorMsg= {} ".format(e))
+        return None
+    
+
+def get_videos():
+    """
+    查询已定义Videos
+    :return: Videos
+    """
+    try:
+        return db.session.query(Video.tab_id, Video.name, Video.cover_src, Video.src, Video.index).filter(Video.deleted == 0).all()
+    except OperationalError as e:
+        logger.info("get_videos errorMsg= {} ".format(e))
+        return None
 
 
 def query_counterbyid(id):
