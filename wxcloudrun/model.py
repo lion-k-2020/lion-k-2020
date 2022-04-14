@@ -66,8 +66,15 @@ class Favorite(db.Model):
 	
 db.create_all()
 
-def to_json(self):
-	dict = self._dict_
-	if "_sa_instance_state" in dict:
-		del dict["_sa_instance_state"]
-	return dict
+class EntityBase(object):
+    def to_json(self):
+        fields = self.__dict__
+        if "_sa_instance_state" in fields:
+            del fields["_sa_instance_state"]
+        
+        return fields
+# def to_json(self):
+# 	dict = self._dict_
+# 	if "_sa_instance_state" in dict:
+# 		del dict["_sa_instance_state"]
+# 	return dict
