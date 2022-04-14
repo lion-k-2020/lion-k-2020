@@ -16,12 +16,9 @@ def get_tabs():
     """
     try:
         tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
-        tabs_list = []
-        for i in range(len(tabs)):
-            tabs_list.append(str(tabs[i]))
-        str = ''.join(tabs_list)
-        logger.info("get_tabs errorMsg= {} ".str)
-        return tabs_list
+        logger.info("get_tabs errorMsg= {} ".tabs[0]['id'])
+        logger.info("get_tabs errorMsg= {} ".len(tabs))
+        return tabs
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
         return None
