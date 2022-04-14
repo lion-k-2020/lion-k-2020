@@ -12,10 +12,7 @@ class AlchemyEncoder(json.JSONEncoder):
             for field in [x for x in dir(obj) if not x.startswith('_') and x != 'metadata']:
                 data = obj.__getattribute__(field)
                 try:
-                    if type(data) is datetime.datetime:
-                        data = data.strftime("%Y-%m-%d %H:%M:%S")
-                    else:
-                        json.dumps(data)
+                    json.dumps(data)
                     fields[field] = data
                 except TypeError:
                     fields[field] = None
