@@ -16,7 +16,8 @@ def get_tabs():
     """
     try:
         tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
-        logger.info("get_tabs errorMsg= {} ".tabs)
+        print tabs
+        #logger.info("get_tabs errorMsg= {} ".tabs)
         return tabs
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
