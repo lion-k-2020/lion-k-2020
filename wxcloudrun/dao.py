@@ -15,7 +15,7 @@ def get_tabs():
     :return: Tabs
     """
     try:
-        tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
+        tabs = db.session.query(Tab.id, Tab.index).filter(Tab.deleted == 0).all()
         return tabs
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
