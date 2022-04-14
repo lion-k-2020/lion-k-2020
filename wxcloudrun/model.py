@@ -65,3 +65,9 @@ class Favorite(db.Model):
     deleted = db.Column(db.SmallInteger, default=0)
 	
 db.create_all()
+
+def to_json(self):
+	dict = self._dict_
+	if "_sa_instance_state" in dict:
+		del dict["_sa_instance_state"]
+	return dict
