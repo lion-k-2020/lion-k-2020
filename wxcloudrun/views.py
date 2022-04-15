@@ -22,7 +22,7 @@ def get_data():
     """
     tabs = get_tabs()
     videos = get_videos()
-    return make_succ_response({"tabs" : tabs_format, "videos" : videos_format})
+    return make_succ_response({"tabs" : tabs, "videos" : videos})
 
 @app.route('/api/count', methods=['POST'])
 def count():
