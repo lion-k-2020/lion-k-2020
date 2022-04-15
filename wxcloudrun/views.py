@@ -22,22 +22,6 @@ def get_data():
     """
     tabs = get_tabs()
     videos = get_videos()
-    tabs_format = []
-    videos_format = []
-    if (len(tabs)):
-        for x in range(len(tabs)):
-            tabs_format.append({})
-            tabs_format[x]['id'] = tabs[x]['id']
-            tabs_format[x]['name'] = tabs[x]['name']
-            tabs_format[x]['index'] = tabs[x]['index']
-    if (len(videos)):
-        for x in range(len(videos)):
-            videos_format.append({})
-            videos_format[x]['tab_id'] = videos[x]['tab_id']
-            videos_format[x]['name'] = videos[x]['name']
-            videos_format[x]['cover_src'] = videos[x]['cover_src']
-            videos_format[x]['src'] = videos[x]['src']
-            videos_format[x]['index'] = videos[x]['index']
     return make_succ_response({"tabs" : tabs_format, "videos" : videos_format})
 
 @app.route('/api/count', methods=['POST'])
