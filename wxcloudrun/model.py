@@ -82,7 +82,7 @@ def get_data():
     """
     :return: 小程序的tabs和videos
     """
-    tabs = Tab.query(Tab.id, Tab.index).filter(Tab.deleted == 0).all()
+    tabs = db.session.query(Tab.id, Tab.index).filter(Tab.deleted == 0).all()
     users_output = []
     for tab in tabs:
         users_output.append(tab.to_json())
