@@ -77,19 +77,6 @@ class Favorite(db.Model):
 	
 db.create_all()
 
-@app.route('/api/get_data', methods=['POST'])
-def get_data():
-    """
-    :return: 小程序的tabs和videos
-    """
-    tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).all()
-    users_output = []
-#     for tab in tabs:
-#         users_output.append(tab.to_json())
-    datas = {'name': tabs[0]['name'], 'id': tabs[1]['id'], 'count': len(tabs)}
-    data = json.dumps({'code': 0, 'data': datas}, ensure_ascii=False)
-#     data = json.dumps({'code': 0, 'data': users_output}, ensure_ascii=False)
-    return Response(data, mimetype='application/json')
 	
 	
 
