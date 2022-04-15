@@ -74,4 +74,16 @@ class Favorite(db.Model):
 	
 db.create_all()
 
+@app.route('/api/get_data', methods=['POST'])
+def get_data():
+    """
+    :return: 小程序的tabs和videos
+    """
+    tabs = Tab.query.all()
+    users_output = []
+    for tab in tabs:
+        users_output.append(tab.to_json())
+    return jsonify(users_output)
+	
+	
 
