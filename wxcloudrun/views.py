@@ -24,17 +24,16 @@ def get_data():
     videos = get_videos()
     tabs_format = []
     videos_format = []
-    c_dict = {}
     if (len(tabs)):
         for x in range(len(tabs)):
+            tabs_format.append({})
             for i in tabs[x]:
-               c_dict[i] = tabs[x][i] 
-        tabs_format.append(c_dict)
+                tabs_format[x][i] = tabs[x][i]
     if (len(videos)):
         for x in range(len(videos)):
+            videos_format.append({})
             for i in videos[x]:
-               c_dict[i] = videos[x][i] 
-        videos_format.append(c_dict)
+               videos_format[x][i] = tabs[x][i]
     return make_succ_response({"tabs" : tabs_format, "videos" : videos_format})
 
 @app.route('/api/count', methods=['POST'])
