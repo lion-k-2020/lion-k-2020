@@ -1,9 +1,8 @@
 import logging
 
 from sqlalchemy.exc import OperationalError
-from builtins import str
 from wxcloudrun import db
-from wxcloudrun.model import Counters, Article, Tab, Video
+from wxcloudrun.model import Counters, Tab, Video
 
 # 初始化日志
 logger = logging.getLogger('log')
@@ -16,7 +15,8 @@ def get_tabs():
     """
     try:
         tabs = db.session.query(Tab.id, Tab.name, Tab.index).filter(Tab.deleted == 0).order_by(Tab.index.asc()).all()
-        return tabs
+        tabs_format = format_data(tabs, ['id', 'name', 'index'])
+        return tabs_format
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
         return None
@@ -28,7 +28,9 @@ def get_videos():
     :return: Videos
     """
     try:
-        return db.session.query(Video.tab_id, Video.name, Video.cover_src, Video.src, Video.index).filter(Video.deleted == 0).order_by(Video.index.asc()).all()
+        videos = db.session.query(Video.tab_id, Video.name, Video.cover_src, Video.src, Video.index).filter(Video.deleted == 0).order_by(Video.index.asc()).all()
+        videos_format = format_data(videos, ['tab_id', 'name', 'cover_src', 'src', 'index'])
+        return videos_format
     except OperationalError as e:
         logger.info("get_videos errorMsg= {} ".format(e))
         return None
@@ -142,3 +144,12 @@ def update_articlebyid(article):
         db.session.commit()
     except OperationalError as e:
         logger.info("update_articlebyid errorMsg= {} ".format(e))
+        
+def format_data(query_res, columns):
+    format_res = []
+    if (len(query_res)):
+        for x in range(len(query_res)):
+            format_res.append({})
+            for i in range(len(columns)):
+                format_res[x][columns[i]] = tabs[x][columns[i]]
+    return format_res                
