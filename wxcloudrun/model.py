@@ -1,17 +1,6 @@
-from datetime import datetime
-from run import app
-import json
 from wxcloudrun import db
-from flask import Response
+from datetime import datetime
 
-
-class EntityBase(object):
-    def to_json(self):
-        fields = self.__dict__
-        if "_sa_instance_state" in fields:
-            del fields["_sa_instance_state"]
-        
-        return fields
 
 
 # 计数表
@@ -34,7 +23,7 @@ class Article(db.Model):
     update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
 
-class Tab(db.Model, EntityBase):
+class Tab(db.Model):
     __tablename__ = 'tab'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), nullable=False)
