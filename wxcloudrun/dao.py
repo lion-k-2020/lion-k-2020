@@ -3,7 +3,7 @@ import logging
 from sqlalchemy.exc import OperationalError
 from builtins import str
 from wxcloudrun import db
-from wxcloudrun.model import Counters, Article, Tab, Video, to_json
+from wxcloudrun.model import Counters, Article, Tab, Video, ModelExt
 
 # 初始化日志
 logger = logging.getLogger('log')
@@ -22,7 +22,7 @@ def get_tabs():
             logger.info("get_tabs errorMsg= {} ".type(tab))
             logger.info("get_tabs errorMsg= {} ".type(tabs))
             logger.info("get_tabs errorMsg= {222} ")
-            tabs_format.append(tab.to_json())
+            tabs_format.append(tab.to_formatted_table(tabs))
         return tabs_format
         return tabs
     except OperationalError as e:
