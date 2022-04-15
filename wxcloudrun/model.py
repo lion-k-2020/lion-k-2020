@@ -2,6 +2,8 @@ from datetime import datetime
 from run import app
 
 from wxcloudrun import db
+from flask import Response
+
 
 class EntityBase(object):
     def to_json(self):
@@ -84,7 +86,8 @@ def get_data():
     users_output = []
     for tab in tabs:
         users_output.append(tab.to_json())
-    return jsonify(users_output)
+    data = json.dumps({'code': 0, 'data': data}, ensure_ascii=False)
+    return Response(data, mimetype='application/json')
 	
 	
 
