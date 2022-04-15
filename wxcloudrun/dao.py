@@ -16,8 +16,12 @@ def get_tabs():
     """
     try:
         tabs = db.session.query(Tab.id, Tab.index).filter(Tab.deleted == 0).all()
+        res = []
+        for tab in tabs:
+            res.append(tab.to_json())
         print(tabs)
         print(type(tabs))
+        return res
         return tabs
     except OperationalError as e:
         logger.info("get_tabs errorMsg= {} ".format(e))
