@@ -84,9 +84,10 @@ def get_data():
     """
     tabs = db.session.query(Tab.id, Tab.index).filter(Tab.deleted == 0).all()
     users_output = []
-    for tab in tabs:
-        users_output.append(tab.to_json())
-    data = json.dumps({'code': 0, 'data': users_output}, ensure_ascii=False)
+#     for tab in tabs:
+#         users_output.append(tab.to_json())
+    data = json.dumps({'code': 0, 'data': tabs[0]}, ensure_ascii=False)
+#     data = json.dumps({'code': 0, 'data': users_output}, ensure_ascii=False)
     return Response(data, mimetype='application/json')
 	
 	
