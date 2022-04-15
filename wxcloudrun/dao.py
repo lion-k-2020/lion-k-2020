@@ -151,5 +151,5 @@ def format_data(query_res, columns):
         for x in range(len(query_res)):
             format_res.append({})
             for i in range(len(columns)):
-                format_res[x][columns[i]] = tabs[x][columns[i]]
+                format_res[x][columns[i]] = query_res[x][columns[i]]
     return format_res                
