@@ -1,8 +1,29 @@
+import json
 from datetime import datetime
 
 from wxcloudrun import db
 
-        
+
+class ModelExt(object):
+    """
+    Model extension, implementing `__repr__` method which returns all the class attributes
+    """
+    def __repr__(self):
+        fields = self.__dict__
+        if "_sa_instance_state" in fields:
+            del fields["_sa_instance_state"]
+
+        return json.dumps(fields)  
+
+    def to_formatted_table(tab_data):
+	"""
+	tab_data is supposed to be of type list(dict)
+	"""
+	ds = tablib.Dataset()
+	return(ds.load(str(tab_data)))
+
+
+ 
 def to_json(self):
     dict = self._dict_
     if "_sa_instance_state" in dict:
@@ -30,7 +51,7 @@ class Article(db.Model):
     update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
 
-class Tab(db.Model):
+class Tab(db.Model, ModelExt):
     __tablename__ = 'tab'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), nullable=False)
@@ -39,7 +60,7 @@ class Tab(db.Model):
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
     deleted = db.Column(db.SmallInteger, default=0)
 
-class Video(db.Model):
+class Video(db.Model, ModelExt):
     __tablename__ = 'video'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     tab_id = db.Column(db.String(32), nullable=False)
