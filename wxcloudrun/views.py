@@ -15,17 +15,17 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/api/get_data', methods=['POST'])
-def get_data():
-    """
-    :return: 小程序的tabs和videos
-    """
-    tabs = get_tabs()
-    videos = get_videos()
-    print(tabs)
-    print(type(tabs))
-    videos = []
-    return make_succ_response({"tabs" : tabs, "videos" : videos})
+# @app.route('/api/get_data', methods=['POST'])
+# def get_data():
+#     """
+#     :return: 小程序的tabs和videos
+#     """
+#     tabs = get_tabs()
+#     videos = get_videos()
+#     print(tabs)
+#     print(type(tabs))
+#     videos = []
+#     return make_succ_response({"tabs" : tabs, "videos" : videos})
 
 @app.route('/api/count', methods=['POST'])
 def count():
