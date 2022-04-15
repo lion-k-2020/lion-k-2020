@@ -33,11 +33,11 @@ def get_data():
     if (len(videos)):
         for x in range(len(videos)):
             videos_format.append({})
-            videos_format[x]['tab_id'] = tabs[x]['tab_id']
-            videos_format[x]['name'] = tabs[x]['name']
-            videos_format[x]['cover_src'] = tabs[x]['cover_src']
-            videos_format[x]['src'] = tabs[x]['src']
-            videos_format[x]['index'] = tabs[x]['index']
+            videos_format[x]['tab_id'] = videos[x]['tab_id']
+            videos_format[x]['name'] = videos[x]['name']
+            videos_format[x]['cover_src'] = videos[x]['cover_src']
+            videos_format[x]['src'] = videos[x]['src']
+            videos_format[x]['index'] = videos[x]['index']
     return make_succ_response({"tabs" : tabs_format, "videos" : videos_format})
 
 @app.route('/api/count', methods=['POST'])
