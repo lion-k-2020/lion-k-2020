@@ -24,6 +24,7 @@ def get_data():
     videos = get_videos()
     print(tabs)
     print(type(tabs))
+    videos = []
     return make_succ_response({"tabs" : tabs, "videos" : videos})
 
 @app.route('/api/count', methods=['POST'])
