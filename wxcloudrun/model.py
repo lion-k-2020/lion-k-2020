@@ -23,7 +23,7 @@ class Article(db.Model):
     update_time = db.Column(db.TIMESTAMP, onupdate=datetime.now(), default=datetime.now())
     create_time = db.Column(db.TIMESTAMP, default=datetime.now())
 
-class Tab(db.Model, ModelExt):
+class Tab(db.Model):
     __tablename__ = 'tab'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     name = db.Column(db.String(50), nullable=False)
@@ -32,7 +32,7 @@ class Tab(db.Model, ModelExt):
     update_time = db.Column(db.TIMESTAMP, default=datetime.now())
     deleted = db.Column(db.SmallInteger, default=0)
 
-class Video(db.Model, ModelExt):
+class Video(db.Model):
     __tablename__ = 'video'
     id = db.Column(db.String(32), primary_key=True, autoincrement=False)
     tab_id = db.Column(db.String(32), nullable=False)
