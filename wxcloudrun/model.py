@@ -86,7 +86,7 @@ def get_data():
     users_output = []
 #     for tab in tabs:
 #         users_output.append(tab.to_json())
-    datas = {'name': tabs[0]['name'], 'id': tabs[1]['id'], 'count', len(tabs)}
+    datas = {'name': tabs[0]['name'], 'id': tabs[1]['id'], 'count': len(tabs)}
     data = json.dumps({'code': 0, 'data': datas}, ensure_ascii=False)
 #     data = json.dumps({'code': 0, 'data': users_output}, ensure_ascii=False)
     return Response(data, mimetype='application/json')
