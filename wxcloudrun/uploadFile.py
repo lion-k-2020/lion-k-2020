@@ -13,7 +13,7 @@ def upload_file(file_path, file_name):
     file = os.path.splitext(file_path)
     # 获取token
     response = requests.get(
-        'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx07d53ce7b97ea80a&secret=695e62720ab4c629d0690c135f1b6b15', verify=false)
+        'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx07d53ce7b97ea80a&secret=695e62720ab4c629d0690c135f1b6b15', verify=False)
     # 得到上传链接
     data = {
         "env": "prod-4gbd4dc41c3a1678",
