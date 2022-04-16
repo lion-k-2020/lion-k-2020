@@ -8,8 +8,8 @@ from wxcloudrun.response import make_succ_empty_response, make_succ_response, ma
 from wxcloudrun.sys import suid
 from wxcloudrun.uploadFile import upload_file
 from wxcloudrun.downloadFile import download_file
-from image_analyse import *
-from image_annotate import *
+from wxcloudrun.imageAnalyse import *
+from wxcloudrun.imageAnnotate import *
 
 
 @app.route('/')
