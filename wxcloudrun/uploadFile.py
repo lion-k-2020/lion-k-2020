@@ -1,7 +1,9 @@
 import json
 import requests
 import os
-
+import ssl
+ 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def upload_file(file_path, file_name):
     # 获取文件类型
