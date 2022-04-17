@@ -49,8 +49,8 @@ def action_analyze():
         return make_err_response('缺少wrong_data参数')
     if 'is_vip' not in params:
         return make_err_response('缺少is_vip参数')
-#     local_path = download_file(params['openid'], params['wrong_data'], "2")
-#     src = upload_file(local_path, params['openid'])
+    local_path = download_file(params['openid'], params['wrong_data'], "2")
+    src = upload_file(local_path, params['openid'])
     res = {"score": 90, "describe": [{"idx": 1, "word": "温馨提示：请不要弯腰哦^-^"},
                                      {"idx": 2, "word": "智能分析评价：亲，您的动作标准度较高，再接再厉哦~"}], 
            "src": "cloud://prod-4gbd4dc41c3a1678.7072-prod-4gbd4dc41c3a1678-1310533907/0c85b8f0f5e8ca2c9c0c2cd5e89deea7.mp4"}
