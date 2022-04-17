@@ -2,6 +2,9 @@ import json
 import requests
 import os
 import ssl
+import urllib3
+
+urllib3.disable_warnings()
 
 s = requests.session()
 s.keep_alive = False
