@@ -8,7 +8,7 @@ MarkupSafe==2.0.1
 PyMySQL==1.0.2
 SQLAlchemy==1.4.29
 Werkzeug==2.0.2
-numpy==1.22.3 
+numpy
 pandas==1.4.1
 pillow==9.0.1 
 scipy==1.8.0
